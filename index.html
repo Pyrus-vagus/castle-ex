@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AR-test-app</title>
+    <link rel="shortcut icon" href="#" />
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/chenzlabs/aframe-ar@master/dist/aframe-ar.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="./shader-component.js"></script>
+    <script src="./play-on-click.js"></script>
+    <script src="./hide-on-play.js"></script>
+    <script src="./scroll-scale.js"></script>
+  </head>
+  <body style="margin: 0px; overflow: hidden">
+    <a-scene embeded arjs="trackingMethod: best;">
+      <a-assets>
+        <video
+          id="my-video"
+          src="assets/video/LogoPrem.webm"
+          width="160"
+          height="90"
+          loop="true"
+          crossorigin="anonymous"
+          playsinline=""
+          webkit-playsinline=""
+        ></video>
+      </a-assets>
+
+      <a-entity
+        material="shader: transparent-video; src: #my-video"
+        geometry="primitive: plane;
+                  width: 15%;
+                  height: 10%"
+        position="0 1 -45"
+        class="cantap"
+        play-on-click
+        scroll-scale
+        visible="false"
+      >
+      </a-entity>
+
+      <a-camera
+        camera
+        look-controls="reverseMouseDrag:true"
+        wasd-controls
+        cursor="rayOrigin: mouse"
+        raycaster="objects: .cantap"
+      >
+        <a-entity
+          position="0 0 -1.5"
+          text="align: center;
+                width: 6;
+                wrapCount: 100;
+                color: black;
+                value: Click or tap to start video"
+          hide-on-play="#my-video"
+        >
+        </a-entity>
+      </a-camera>
+    </a-scene>
+  </body>
+</html>
