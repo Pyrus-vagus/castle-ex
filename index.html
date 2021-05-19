@@ -7,16 +7,26 @@
     <title>AR-test-app</title>
     <link rel="shortcut icon" href="#" />
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/chenzlabs/aframe-ar@master/dist/aframe-ar.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+
     <script src="./shader-component.js"></script>
     <script src="./play-on-click.js"></script>
     <script src="./hide-on-play.js"></script>
     <script src="./scroll-scale.js"></script>
+    <script src="./pinch-scale.js"></script>
   </head>
   <body style="margin: 0px; overflow: hidden">
-    <a-scene embeded arjs="trackingMethod: best;">
+    <a-scene
+      embeded
+      arjs="trackingMethod: best;"
+      xrweb
+      xrextras-almost-there
+      xrextras-runtime-error
+      xrextras-tap-recenter
+    >
       <a-assets>
         <video
           id="my-video"
@@ -39,6 +49,7 @@
         class="cantap"
         play-on-click
         scroll-scale
+        pinch-scale
         visible="false"
       >
       </a-entity>
